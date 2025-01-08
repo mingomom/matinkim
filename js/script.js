@@ -18,7 +18,17 @@ document.addEventListener("DOMContentLoaded", function () {
     this.classList.toggle(`active`);
 
     const subenuMobile = document.querySelector(`.submenu_m`);
-    subenuMobile.classList.toggle(`on`);
+    // subenuMobile.classList.toggle(`on`);
+
+    const menuHas = hamburgurBtn.classList.contains(`active`);
+    //menuBtn 에 active 문자열이 있는지 판단
+
+    if (menuHas === true) {
+      subenuMobile.classList.add(`on`);
+    } else { 
+      subenuMobile.classList.remove(`on`);
+    };
+
   });
 
   const shopListMobile = document.querySelector(`.shop_list_m`);
@@ -83,6 +93,12 @@ document.addEventListener("DOMContentLoaded", function () {
         slidesPerGroup: 2,
         spaceBetween: 10,
       },
+      375:{
+        slidesPerView: 1,
+        slidesPerGroup: 1,
+        spaceBetween: 0,
+      },
+  
     },
 
     navigation: {
@@ -90,22 +106,6 @@ document.addEventListener("DOMContentLoaded", function () {
       prevEl: ".swiper-button-prev",
     },
   });
-
-  //hover btn
-  // .item에 mouseenter 하면 .btn.on .swiper-slide에서 mouseleave 하면 .on remove
-  const slides = document.querySelectorAll(`.sec1 .swiper-slide`);
-
-  for (const slide of slides) {
-    const slideItem = slide.querySelector(`.item`);
-    const slideBtn = slide.querySelector(`.btn`);
-
-    slide.addEventListener(`mouseenter`, function () {
-      slideBtn.classList.add(`on`);
-    });
-    slide.addEventListener(`mouseleave`, function () {
-      slideBtn.classList.remove(`on`);
-    });
-  }
 
   //data-image
   const hoverImg = document.querySelector(`.project .hover_img`);
@@ -197,22 +197,45 @@ document.addEventListener("DOMContentLoaded", function () {
   // -----------------------------------------------------
 
   // 배너 다음부터 scroll 올리면 top버튼 보여지게
-
-  window.addEventListener(`wheel`, (event) => {
     const topBtn = document.querySelector(`.top_btn`);
     const sectionWrap = document.querySelector(`.section_wrap`);
     const sectionOffsetTop = sectionWrap.offsetTop - 500;
-    const scrollTop = window.scrollY;
-    console.log(scrollTop);
-
+  
+  let lastTouchY = 0; // 터치 이벤트에서 이전 Y 좌표 저장
+  
+  function handleScroll(scrollTop, direction) {
     if (scrollTop > sectionOffsetTop) {
-      if (event.deltaY < 0) {
-        topBtn.classList.add(`on`);
-      } else {
-        topBtn.classList.remove(`on`);
+      if (direction === "up") {
+        topBtn.classList.add("on");
+      } else if (direction === "down") {
+        topBtn.classList.remove("on");
       }
     } else {
-      topBtn.classList.remove(`on`);
+      topBtn.classList.remove("on");
     }
+  }
+
+  // 데스크톱: wheel 이벤트
+  window.addEventListener("wheel", (event) => {
+    const scrollTop = window.scrollY;
+    const direction = event.deltaY < 0 ? "up" : "down"; // 휠 방향
+    handleScroll(scrollTop, direction);
   });
+
+  // 모바일: touchmove 이벤트
+  window.addEventListener("touchmove", (event) => {
+    const scrollTop = window.scrollY;
+    const currentTouchY = event.touches[0].clientY; // 현재 터치 Y 좌표
+
+    let direction = "";
+    if (currentTouchY < lastTouchY) {
+      direction = "down"; // 터치가 아래로 이동
+    } else if (currentTouchY > lastTouchY) {
+      direction = "up"; // 터치가 위로 이동
+    }
+
+    lastTouchY = currentTouchY; // 마지막 터치 위치 업데이트
+    handleScroll(scrollTop, direction);
+  });
+
 });

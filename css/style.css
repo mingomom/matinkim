@@ -77,6 +77,10 @@
   rotate: -45deg;
 }
 
+.footer{
+  padding: 0 48px;
+}
+
 /* ---------------------mainmenu------------------------- */
 .mainmenu {
   background-color: #1a1a1a;
@@ -526,7 +530,7 @@ button {
   font-size: 1rem;
 }
 
-.swiper_container .btn {
+.musthave .btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -540,7 +544,7 @@ button {
 
   transition: 0.5s;
 }
-.swiper_container .btn.on {
+.musthave .swiper-slide:hover .btn {
   opacity: 1;
 }
 /* .item에 mouseenter 하면 .btn.on .swiper-slide에서 mouseleave 하면 .on remove  */
@@ -908,6 +912,12 @@ button {
   .hamburger {
     display: block;
   }
+  .footer{
+    padding: 0 24px;
+  }
+  .footer .container{
+    padding: 20px 0;
+  }
 }
 
 @media (max-width: 1200px) {
@@ -979,6 +989,11 @@ button {
   .swiper_container .btn {
     margin-bottom: 120px;
   }
+
+  .swiper-button-next, .swiper-button-prev{
+    top: var(--swiper-navigation-top-offset, 40%) !important;
+  }
+
   .sec2 {
     padding: 0 20px;
   }
@@ -1045,6 +1060,11 @@ button {
     padding: 16px 0;
   }
 
+  .musthave .btn{
+    opacity: 1;
+  }
+
+
   .sec2 {
     padding: 0 10px;
   }
@@ -1066,6 +1086,9 @@ button {
   .sec3 .slide_container .item {
     width: 40vw;
     height: 40vw;
+  }
+  .footer{
+    padding: 0 10px;
   }
 
   .footer .container .footer_l ul {
@@ -1106,4 +1129,17 @@ button {
   .sec3 .text_box p {
     font-size: 1rem;
   }
+}
+
+@media (max-width: 480px) {
+  
+.project{
+  padding: 100px 20px;
+}
+
+.project li a::after{
+  display: none;
+}
+
+
 }
