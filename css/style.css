@@ -221,6 +221,7 @@
 }
 
 .submenu_m.on {
+ 
   opacity: 1;
   z-index: 9999;
   transition: 0.3s;
@@ -1103,7 +1104,15 @@ button {
   .submenu_m {
     width: 100%;
     padding: 10px;
+
+    font-size: 8vw;
   }
+
+ .shop_list_m,
+ .menu_list_m{
+   font-size: 4.5vw;
+ }
+ 
   .project {
     width: 100%;
   }

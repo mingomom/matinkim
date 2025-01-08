@@ -17,16 +17,14 @@ document.addEventListener("DOMContentLoaded", function () {
   hamburgurBtn.addEventListener(`click`, function () {
     this.classList.toggle(`active`);
 
-    const subenuMobile = document.querySelector(`.submenu_m`);
-    // subenuMobile.classList.toggle(`on`);
-
+    const submenuMobile = document.querySelector(`.submenu_m`);
     const menuHas = hamburgurBtn.classList.contains(`active`);
     //menuBtn 에 active 문자열이 있는지 판단
 
     if (menuHas === true) {
-      subenuMobile.classList.add(`on`);
+      submenuMobile.classList.add(`on`);
     } else { 
-      subenuMobile.classList.remove(`on`);
+      submenuMobile.classList.remove(`on`);
     };
 
   });
