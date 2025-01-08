@@ -992,9 +992,9 @@ button {
   }
 
   .swiper-button-next, .swiper-button-prev{
-    top: var(--swiper-navigation-top-offset, 40%) !important;
+    top: var(--swiper-navigation-top-offset, 35%) !important;
   }
-
+ 
   .sec2 {
     padding: 0 20px;
   }
@@ -1141,7 +1141,9 @@ button {
 }
 
 @media (max-width: 480px) {
-  
+.swiper_container{
+  padding: 0 20px;
+}
 .project{
   padding: 100px 20px;
 }
